@@ -2,7 +2,6 @@ extern crate image;
 extern crate clap;
 
 use std::str::from_utf8;
-use std::fs::File;
 use std::path::Path;
 use clap::{Arg, App};
 
