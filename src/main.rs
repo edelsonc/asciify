@@ -34,7 +34,7 @@ fn main() {
                     .about("Turn an image into ascii art!")
                     .args( &[
                     Arg::from_usage("<INPUT> 'Sets the image file'"),
-                    Arg::from_usage("[resize] -s, --resize [width] [height] 'Rescale image; preserve aspect ratio'"),
+                    Arg::from_usage("[resize] -s, --resize [width] [height] 'Rescale image; does not preserve aspect ratio'"),
                     ])
                     .get_matches();
 

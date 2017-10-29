@@ -16,3 +16,10 @@ A new directory named `target` will be created, with a `release` directory. You 
 
 # Examples
 An example image and output are provided above as `pixel_house.gif` and `pixel_house.txt`.
+
+The example was created using the following
+```
+$ asciify pixel_house.gif -s 200 100 > pixel_house.txt
+```
+
+This leverages the `-s` flag, which resized the image
