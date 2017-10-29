@@ -47,9 +47,6 @@ fn main() {
         None => vec![80u32, 80u32],
     };
 
-    //  if rot90 == true {
-    //      let img = image.rotate90()
-    //  }
     let img = img.resize(dims[0], dims[1], image::FilterType::Nearest);
 
     // convert to LUMA and change each greyscale pixel into a character
