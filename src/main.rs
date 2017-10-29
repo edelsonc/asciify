@@ -46,7 +46,11 @@ fn main() {
         Some(v) => v.iter().map(|s| s.parse::<u32>().unwrap()).collect(),
         None => vec![80u32, 80u32],
     };
-    let img = img.rotate90().resize(dims[0], dims[1], image::FilterType::Nearest);
+
+    //  if rot90 == true {
+    //      let img = image.rotate90()
+    //  }
+    let img = img.resize(dims[0], dims[1], image::FilterType::Nearest);
 
     // convert to LUMA and change each greyscale pixel into a character
     let mut imgbuf = img.to_luma();
