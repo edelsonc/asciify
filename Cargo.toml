@@ -1,0 +1,9 @@
+[package]
+name = "asciify"
+version = "0.1.0"
+authors = ["edelsonc <Charles.Edelson12@ncf.edu>"]
+
+[dependencies]
+image = "*"
+clap = "*"
+
