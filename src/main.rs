@@ -5,10 +5,14 @@ use std::str::from_utf8;
 use std::path::Path;
 use clap::{Arg, App};
 
-fn intensity_to_ascii(value: &u8) -> &str {
+fn intensity_to_ascii(value: &u8, invert: bool) -> &str {
     // changes an intensity into an ascii character
     // this is a central step in creating the ascii art
-    let ascii_chars  = [" ", ".", ":", "_", "=", "+", "*", "#", "%", "@"];
+    let ascii_chars  = [
+        " ", ".", "^", ",", ":", "_", "=", "~", "+", "O", "o", "*",
+        "#", "&", "%", "B", "@", "$"
+    ];
+    
     let n_chars = ascii_chars.len() as u8;
     let step = 255u8 / n_chars;
     for i in 1..(n_chars - 1) {   
@@ -44,16 +48,16 @@ fn main() {
     // resize image as an option if its very large...defualts to screen width
     let dims = match matches.values_of_lossy("resize") {
         Some(v) => v.iter().map(|s| s.parse::<u32>().unwrap()).collect(),
-        None => vec![80u32, 80u32],
+        None => vec![80u32, 40u32],
     };
 
-    let img = img.resize(dims[0], dims[1], image::FilterType::Nearest);
+    let img = img.resize_exact(dims[0], dims[1], image::FilterType::Nearest);
 
     // convert to LUMA and change each greyscale pixel into a character
     let mut imgbuf = img.to_luma();
     let mut ascii_art = String::new();
     for pixel in imgbuf.pixels() {
-        let pixel_ascii = intensity_to_ascii(&pixel.data[0]);
+        let pixel_ascii = intensity_to_ascii(&pixel.data[0], false);
         ascii_art = ascii_art + pixel_ascii;
     }
 
