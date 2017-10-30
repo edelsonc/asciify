@@ -22,4 +22,4 @@ The example was created using the following
 $ asciify pixel_house.gif -s 200 100 > pixel_house.txt
 ```
 
-This leverages the `-s` flag, which resized the image
+This leverages the `-s` flag, which resized the image. Additionally, note that the example is very large. You may have to zoom out to prevent line wrapping.
