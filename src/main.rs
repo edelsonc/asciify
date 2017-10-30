@@ -54,10 +54,10 @@ fn main() {
     let img = img.resize_exact(dims[0], dims[1], image::FilterType::Nearest);
 
     // convert to LUMA and change each greyscale pixel into a character
-    let mut imgbuf = img.to_luma();
+    let imgbuf = img.to_luma();
     let ascii_art = imgbuf.pixels()
-                    .map( |p| intensity_to_ascii(&pixel.data[0]) )
-                    .fold( String::new(), |s, p| s.extend(p)i );
+                    .map( |p| intensity_to_ascii(&p.data[0]) )
+                    .fold( String::new(), |s, p| s + p );
     // for pixel in imgbuf.pixels() {
     //     let pixel_ascii = intensity_to_ascii(&pixel.data[0], false);
     //     ascii_art = ascii_art + pixel_ascii;
