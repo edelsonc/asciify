@@ -58,10 +58,6 @@ fn main() {
     let ascii_art = imgbuf.pixels()
                     .map( |p| intensity_to_ascii(&p.data[0]) )
                     .fold( String::new(), |s, p| s + p );
-    // for pixel in imgbuf.pixels() {
-    //     let pixel_ascii = intensity_to_ascii(&pixel.data[0], false);
-    //     ascii_art = ascii_art + pixel_ascii;
-    // }
 
     // we have one long string, but we need to chunk it by line
     let subs = ascii_art.as_bytes()
