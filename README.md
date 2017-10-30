@@ -12,7 +12,7 @@ $ cd asciify
 $ cargo build --release
 ```
 
-A new directory named `target` will be created, with a `release` directory. You executable will be there.
+A new directory named `target` will be created, with a `release` directory. Your executable will be there.
 
 # Examples
 An example image and output are provided above as `pixel_house.gif` and `pixel_house.txt`.
