@@ -5,7 +5,7 @@ use std::str::from_utf8;
 use std::path::Path;
 use clap::{Arg, App};
 
-fn intensity_to_ascii(value: &u8, invert: bool) -> &str {
+fn intensity_to_ascii(value: &u8) -> &str {
     // changes an intensity into an ascii character
     // this is a central step in creating the ascii art
     let ascii_chars  = [
@@ -55,12 +55,15 @@ fn main() {
 
     // convert to LUMA and change each greyscale pixel into a character
     let mut imgbuf = img.to_luma();
-    let mut ascii_art = String::new();
-    for pixel in imgbuf.pixels() {
-        let pixel_ascii = intensity_to_ascii(&pixel.data[0], false);
-        ascii_art = ascii_art + pixel_ascii;
-    }
+    let ascii_art = imgbuf.pixels()
+                    .map( |p| intensity_to_ascii(&pixel.data[0]) )
+                    .fold( String::new(), |s, p| s.extend(p)i );
+    // for pixel in imgbuf.pixels() {
+    //     let pixel_ascii = intensity_to_ascii(&pixel.data[0], false);
+    //     ascii_art = ascii_art + pixel_ascii;
+    // }
 
+    // we have one long string, but we need to chunk it by line
     let subs = ascii_art.as_bytes()
         .chunks(imgbuf.width() as usize)
         .map(from_utf8)
